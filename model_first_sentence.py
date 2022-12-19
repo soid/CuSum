@@ -29,8 +29,9 @@ def main(file_path):
     # evaluate
     evaluator = rouge.Rouge(metrics=["rouge-n", "rouge-l"], max_n=2, limit_length=False, apply_avg=True,
                             stemming=True, ensure_compatibility=True)
-    sums = evaluator.get_scores(hyp, ref).items()
-    for metric, val in sums:
+    sums = evaluator.get_scores(hyp, ref)
+    for metric in ['rouge-1', 'rouge-2', 'rouge-l']:
+        val = sums[metric]
         print("  ", metric, ":", "%.2f" % (val['f']*100))
 
 
