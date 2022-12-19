@@ -56,7 +56,7 @@ python3 scripts/spm_train.py data/culpa/train.jsonl data/sentencepiece/culpa
 
 The first baseline we consider is naive first sentence. Evaluate:
 ```shell
-python model_first_sentence.py data/culpa/test.json
+python model_first_sentence.py culpa.test.json
    rouge-1 : 19.42
    rouge-2 : 2.80
    rouge-l : 12.75
@@ -64,7 +64,12 @@ python model_first_sentence.py data/culpa/test.json
 
 Similarly, compute Extractive Oracle:
 ```shell
-python model_oracle.py data/culpa/test.json
+python model_oracle.py culpa.test.json
+```
+
+To show sample:
+```shell
+python model_oracle.py culpa.test.json --show-sample
 ```
 
 Training COOP/BiMeanVae baseline:

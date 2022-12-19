@@ -23,10 +23,10 @@ class CuSumDecoder:
         for rv in reviews:
             ins.extend(rv.split("."))
 
-        # encode reviews
+        # find each sentence representation
         z_raw: torch.Tensor = self.vae.encode(ins)  # dim: [num_sentences * latent_size]
 
-        # run k-means to find 12 center clusters
+        # run k-means to find 10 center clusters
         cluster_ids_x, cluster_centers = kmeans(
             X=z_raw,
             num_clusters=10,
@@ -76,12 +76,16 @@ def main(model_path, references_path):
 
     outputs, best = csd.decode(reviews)
 
-    print("Outputs:")
-    print(outputs)
+    # print("Outputs:")
+    # print(outputs)
 
     print()
     print("best input-output overlap:")
     print(best)
+
+    print()
+    print("Reference:")
+    print(reference)
 
     # compute rouge for the sample
     print()
